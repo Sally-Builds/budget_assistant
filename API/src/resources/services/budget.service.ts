@@ -14,6 +14,9 @@ export default class BudgetService {
     category: string,
   ): Promise<IBudget> => {
     try {
+      //check if name already exist in db
+      if (await BudgetRepository.findOne({ name, year }))
+        throw new HttpException('Budget already exist for this year', 400);
       const data: Partial<IBudget> = {
         name,
         amount,
@@ -35,6 +38,16 @@ export default class BudgetService {
   public getAll = async (query: any): Promise<IBudget[]> => {
     try {
       const budgets = await BudgetRepository.findAll(query);
+
+      return budgets;
+    } catch (error: any) {
+      throw new HttpException(error.message, error.statusCode);
+    }
+  };
+
+  public getAllNames = async (query: any): Promise<string[]> => {
+    try {
+      const budgets = (await BudgetRepository.findAll(query)).map((el: IBudget) => el.name);
 
       return budgets;
     } catch (error: any) {

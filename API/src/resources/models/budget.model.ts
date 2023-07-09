@@ -12,12 +12,10 @@ const budgetSchema = new Schema<IBudget>({
   },
   year: {
     type: Number,
-    unique: true,
     required: [true, 'please enter budget year'],
   },
   session: {
     type: String,
-    unique: true,
   },
   semester: {
     type: String,

@@ -48,6 +48,16 @@ export default class BudgetRepository {
     }
   }
 
+  static async findOne(query: any): Promise<IBudget | null> {
+    try {
+      const budget = await budgetModel.findOne(query);
+
+      return budget;
+    } catch (error: any) {
+      throw new HttpException(error, 500);
+    }
+  }
+
   /**
    *
    * @param id  id of budget to update

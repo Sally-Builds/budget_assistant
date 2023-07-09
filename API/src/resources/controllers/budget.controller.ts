@@ -39,6 +39,16 @@ export class BudgetController {
       next(new HttpException(error.message, error.statusCode));
     }
   };
+
+  public getAllBudgetNames = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    try {
+      const budgets = await this._service.getAllNames(req.query);
+
+      res.status(200).json({ result: budgets.length, budgets });
+    } catch (error: any) {
+      next(new HttpException(error.message, error.statusCode));
+    }
+  };
 }
 
 export default new BudgetController(new BudgetService());
