@@ -8,7 +8,7 @@
     "dev": "tsc-watch --onSuccess \"node ./build/server.js\"",
     "build": "tsc",
     "lint": "eslint src/**/*.ts",
-    "format": "eslint src/**/*.ts --fix"
+    "format": "eslint --fix --ext src/**/*.ts"
   },
   "keywords": [
     "Hostel_Allocation",
@@ -35,7 +35,7 @@
     "module-alias": "^2.2.2",
     "mongoose": "^6.3.3",
     "morgan": "^1.10.0",
-    "randomstring": "^1.2.2",
+    "randomstring": "^1.3.0",
     "validator": "^13.7.0"
   },
   "devDependencies": {

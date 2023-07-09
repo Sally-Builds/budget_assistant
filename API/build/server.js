@@ -8,12 +8,17 @@ require("module-alias/register");
 const validateEnv_1 = __importDefault(require("@/utils/validateEnv"));
 const app_1 = __importDefault(require("./app"));
 const user_router_1 = __importDefault(require("./resources/routes/user.router"));
+const budget_router_1 = __importDefault(require("./resources/routes/budget.router"));
 // controller imports below
 (0, validateEnv_1.default)();
 const app = new app_1.default([
     {
         path: 'users',
         router: (0, user_router_1.default)(),
+    },
+    {
+        path: 'budget',
+        router: (0, budget_router_1.default)(),
     },
 ], Number(process.env.PORT));
 app.listen();
