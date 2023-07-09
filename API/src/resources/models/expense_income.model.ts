@@ -7,8 +7,8 @@ const expense_incomeSchema = new Schema<IExpense_Income>({
     required: [true, 'Please enter the code for this expense or income simulation'],
   },
   amount: {
-    type: String,
-    required: [true, 'Please enter the'],
+    type: Number,
+    required: [true, 'Please enter the amount of income or expense'],
   },
 });
 

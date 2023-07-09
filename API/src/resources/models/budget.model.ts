@@ -10,6 +10,10 @@ const budgetSchema = new Schema<IBudget>({
     required: [true, 'please enter budget name'],
     unique: true,
   },
+  amount: {
+    type: Number,
+    required: [true, 'Please enter the budget amount'],
+  },
   year: {
     type: Number,
     required: [true, 'please enter budget year'],

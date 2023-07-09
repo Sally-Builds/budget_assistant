@@ -45,9 +45,11 @@ export default class BudgetService {
     }
   };
 
-  public getAllNames = async (query: any): Promise<string[]> => {
+  public getAllNames = async (query: any): Promise<any[]> => {
     try {
-      const budgets = (await BudgetRepository.findAll(query)).map((el: IBudget) => el.name);
+      const budgets = (await BudgetRepository.findAll(query)).map((el: IBudget) => {
+        return { name: el.name, code: el.code };
+      });
 
       return budgets;
     } catch (error: any) {
