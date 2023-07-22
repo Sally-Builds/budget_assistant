@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express-serve-static-core';
 import BudgetService from '../services/budget.service';
 import HttpException from '@/utils/exceptions/httpExceptions';
+import AggregationRepository from '../db_repository/aggregate.repository';
 
 export class BudgetController {
   private _service;
@@ -45,6 +46,16 @@ export class BudgetController {
       const budgets = await this._service.getAllNames(req.query);
 
       res.status(200).json({ result: budgets.length, budgets });
+    } catch (error: any) {
+      next(new HttpException(error.message, error.statusCode));
+    }
+  };
+
+  public test = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    try {
+      const budget = await AggregationRepository.get();
+
+      res.status(200).json(budget);
     } catch (error: any) {
       next(new HttpException(error.message, error.statusCode));
     }
