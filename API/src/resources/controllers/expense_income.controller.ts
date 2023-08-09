@@ -19,6 +19,16 @@ export class Expense_IncomeController {
       next(new HttpException(error.message, error.statusCode));
     }
   };
+
+  public getAll = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
+    try {
+      const data = await this._service.getAll();
+
+      res.status(200).json({ result: data.length, data });
+    } catch (error: any) {
+      next(new HttpException(error.message, error.statusCode));
+    }
+  };
 }
 
 export default new Expense_IncomeController(new Expense_IncomeService());

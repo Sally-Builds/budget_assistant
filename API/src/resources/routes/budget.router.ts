@@ -10,7 +10,7 @@ class BudgetRouter {
   constructor(controller: BudgetController) {
     this._controller = controller;
     this._router.get('/names', this._controller.getAllBudgetNames);
-    this._router.get('/test', this._controller.test);
+    this._router.get('/aggregate', this._controller.test);
     this._router
       .route('/')
       .post(validation(budgetValidation.create), this._controller.createBudget)

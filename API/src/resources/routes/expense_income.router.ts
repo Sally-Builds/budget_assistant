@@ -9,7 +9,10 @@ class Expense_IncomeRouter {
 
   constructor(controller: Expense_IncomeController) {
     this._controller = controller;
-    this._router.route('/').post(validation(expense_incomeValidation.create), this._controller.create);
+    this._router
+      .route('/')
+      .post(validation(expense_incomeValidation.create), this._controller.create)
+      .get(this._controller.getAll);
   }
 
   public getRouter = () => {

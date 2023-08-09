@@ -6,12 +6,20 @@ import BudgetRepository from '../db_repository/budget.repository';
 export default class Expense_IncomeService {
   public create = async (code: string, amount: number): Promise<IExpense_Income> => {
     try {
-      const budget = await BudgetRepository.findOne({ code });
+      const budget: any = await BudgetRepository.findOne({ code });
       if (!budget) throw new HttpException('wrong code', 400);
 
-      if (await Expense_IncomeRepository.findOne({ code })) throw new HttpException('already created', 400);
       const data = await Expense_IncomeRepository.create({ code, amount, budget_id: budget.id });
 
+      return data;
+    } catch (error: any) {
+      throw new HttpException(error.message, error.statusCode);
+    }
+  };
+
+  public getAll = async (): Promise<IExpense_Income[]> => {
+    try {
+      const data = await Expense_IncomeRepository.findAll({});
       return data;
     } catch (error: any) {
       throw new HttpException(error.message, error.statusCode);

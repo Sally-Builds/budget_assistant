@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import mongoose, { Schema, model } from 'mongoose';
 import IExpense_Income from '../interfaces/expense_income.interface';
 
 const expense_incomeSchema = new Schema<IExpense_Income>({
@@ -7,7 +7,8 @@ const expense_incomeSchema = new Schema<IExpense_Income>({
     required: [true, 'Please enter the code for this expense or income simulation'],
   },
   budget_id: {
-    type: String,
+    ref: 'Budget',
+    type: mongoose.Schema.Types.ObjectId,
     required: [true, 'enter budget id'],
   },
   amount: {

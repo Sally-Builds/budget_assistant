@@ -25,7 +25,7 @@ export default class BudgetRepository {
    */
   static async findAll(query: any): Promise<IBudget[]> {
     try {
-      const budget = await budgetModel.find(query);
+      const budget = await budgetModel.find(query).populate('actual');
 
       return budget;
     } catch (error: any) {
@@ -40,7 +40,7 @@ export default class BudgetRepository {
    */
   static async find(id: string): Promise<IBudget | null> {
     try {
-      const budget = await budgetModel.findById(id);
+      const budget = await budgetModel.findById(id).populate('actual');
 
       return budget;
     } catch (error: any) {

@@ -11,6 +11,7 @@ import HomeLayout from "../containers/Layouts/HomeLayout";
  */
 import Home from "../containers/Views/Home";
 import Dashboard from "../containers/Views/Dashboard";
+import Simulation from "../containers/Views/Simulation"
 const Router = () => {
   return (
     <div className="">
@@ -19,8 +20,9 @@ const Router = () => {
           <Route path="/" element={<MainLayout />}>
             <Route path="" element={<Home />} />
           </Route>
-          <Route path="/dashboard" element={<HomeLayout />}>
-            <Route path="" element={<Dashboard />} />
+          <Route path="" element={<HomeLayout />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/simulation" element={<Simulation />} />
           </Route>
         </Routes>
       </BrowserRouter>

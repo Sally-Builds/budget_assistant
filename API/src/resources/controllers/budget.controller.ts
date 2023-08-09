@@ -37,6 +37,7 @@ export class BudgetController {
 
       res.status(200).json({ result: budgets.length, budgets });
     } catch (error: any) {
+      console.log(error);
       next(new HttpException(error.message, error.statusCode));
     }
   };
@@ -53,6 +54,7 @@ export class BudgetController {
 
   public test = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
     try {
+      console.log(req.query);
       const budget = await AggregationRepository.get();
 
       res.status(200).json(budget);

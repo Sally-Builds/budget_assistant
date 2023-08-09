@@ -45,17 +45,29 @@ export default class BudgetService {
     }
   };
 
-  public getAllNames = async (query: any): Promise<any[]> => {
+  public getAllNames = async (query: any): Promise<IBudget[]> => {
     try {
-      const budgets = (await BudgetRepository.findAll(query)).map((el: IBudget) => {
-        return { name: el.name, code: el.code };
-      });
+      const budgets = await BudgetRepository.findAll(query);
 
       return budgets;
     } catch (error: any) {
       throw new HttpException(error.message, error.statusCode);
     }
   };
+
+  // public getAllNames = async (query: any): Promise<any[]> => {
+  //   try {
+  //     console.log(query);
+  //     const budgets = await BudgetRepository.findAll(query);
+  //     // .map((el: IBudget) => {
+  //     //   return { name: el.name, code: el.code };
+  //     // });
+
+  //     return budgets;
+  //   } catch (error: any) {
+  //     throw new HttpException(error.message, error.statusCode);
+  //   }
+  // };
 
   public get = async (id: string): Promise<IBudget> => {
     try {

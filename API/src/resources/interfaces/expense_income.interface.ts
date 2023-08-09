@@ -1,6 +1,6 @@
-export default interface IExpense_Income {
+import { Document, ObjectId } from 'mongoose';
+export default interface IExpense_Income extends Document {
   code: string;
   amount: number;
-  budget_id: string;
-  id: string;
+  budget_id: ObjectId;
 }

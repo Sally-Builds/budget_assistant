@@ -1,4 +1,5 @@
-export default interface IBudget {
+import { Document } from 'mongoose';
+export default interface IBudget extends Document {
   name: string;
   amount: number;
   year: number;
@@ -7,5 +8,4 @@ export default interface IBudget {
   code: string;
   type: string;
   category: string;
-  id: string;
 }
